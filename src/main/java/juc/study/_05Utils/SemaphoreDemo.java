@@ -14,7 +14,12 @@ public class SemaphoreDemo {
         for (int i = 1; i <=6; i++) {
             new Thread(()->{
                 try {
-                    //抢占
+                    /**
+                     * Semaphore 中的 state：表示资源的数量。
+                     * state>0 时，可以获取资源，并将 state-1。
+                     * 当 state=0 时，获取不到资源，此时线程会被阻塞。
+                     * 当资源被释放时，state+ 1，此时其他线程可以获得资源。
+                     */
                     semaphore.acquire();
 
                     System.out.println(Thread.currentThread().getName()+" 抢到了车位");

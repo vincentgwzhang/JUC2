@@ -21,6 +21,11 @@ public class CountDownLatchDemo {
             },String.valueOf(i)).start();
         }
 
+        /**
+         * CountDownLatch 中的 state：表示一个计数器。
+         * 当 state>0 时，线程调用 await 会被阻塞，
+         * 当 state 值被减少为 0 时，线程会被唤醒；
+         */
         countDownLatch.await();
         System.out.println(Thread.currentThread().getName()+" 班长锁门走人了");
     }
