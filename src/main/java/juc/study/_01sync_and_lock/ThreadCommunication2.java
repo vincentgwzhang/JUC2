@@ -14,17 +14,18 @@ public class ThreadCommunication2 {
     static class Share {
         private int number = 0;
         private Lock lock = new ReentrantLock();
-        private Condition condition = lock.newCondition();
+        private Condition conditionIncr = lock.newCondition();
+        private Condition conditionDesc = lock.newCondition();
 
         public void incr() throws InterruptedException {
             lock.lock();
             try {
                 while (number != 0) {
-                    condition.await();
+                    conditionIncr.await();
                 }
                 number++;
                 System.out.println(Thread.currentThread().getName()+" :: "+number);
-                condition.signalAll();
+                conditionDesc.signal();
             }finally {
                 lock.unlock();
             }
@@ -34,11 +35,11 @@ public class ThreadCommunication2 {
             lock.lock();
             try {
                 while(number != 1) {
-                    condition.await();
+                    conditionDesc.await();
                 }
                 number--;
                 System.out.println(Thread.currentThread().getName()+" :: "+number);
-                condition.signalAll();
+                conditionIncr.signal();
             }finally {
                 lock.unlock();
             }

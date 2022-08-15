@@ -72,9 +72,9 @@ public class RoundCommunication {
 
 
     public static void main(String[] args) throws InterruptedException {
-        Printer p1 = new Printer(1, 1, "AA", lock, conA, conB, 2);
-        Printer p2 = new Printer(1, 2, "BB", lock, conB, conC, 3);
-        Printer p3 = new Printer(1, 3, "CC", lock, conC, conA, 1);
+        Printer p1 = new Printer(3, 1, "AA", lock, conA, conB, 2);
+        Printer p2 = new Printer(3, 2, "BB", lock, conB, conC, 3);
+        Printer p3 = new Printer(3, 3, "CC", lock, conC, conA, 1);
 
         p3.start();
         TimeUnit.SECONDS.sleep(1);
